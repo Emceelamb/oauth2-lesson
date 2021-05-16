@@ -1,0 +1,14 @@
+# GET CLIENT CREDENTIALS
+POST http://localhost:3000/auth
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic c2VjcmV0YXBwbGljYXRpb246dG9wc2VjcmV0
+
+grant_type=client_credentials
+
+###
+GET http://localhost:3000/secret
+
+###
+
+GET http://localhost:3000/secret
+Authorization: Bearer 751096fcdd9256b0ab51188f5ab6ec7f069f4f5f
