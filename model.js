@@ -1,4 +1,4 @@
-let config = {
+let db = {
   confidentialClients: [{
     clientId: 'secretapplication',
     clientSecret: 'topsecret',
@@ -13,10 +13,9 @@ let config = {
 // * USED FOR DEBUGGING
 
 var dump = function() {
-	console.log('clients', config.clients);
-	console.log('confidentialClients', config.confidentialClients);
-	console.log('tokens', config.tokens);
-	console.log('users', config.users);
+	console.log('confidentialClients', db.confidentialClients);
+	console.log('tokens', db.tokens);
+	console.log('users', db.users);
 };
 
 /* ******************************************
@@ -26,7 +25,7 @@ var dump = function() {
 // * https://oauth2-server.readthedocs.io/en/latest/model/spec.html#model-getclient
 
 const getClient = (clientId, clientSecret) => {
-  let confidentialClients = config.confidentialClients.filter((client)=>{
+  let confidentialClients = db.confidentialClients.filter((client)=>{
     return client.clientId === clientId && client.clientSecret === clientSecret
   })
   return confidentialClients[0]
@@ -42,14 +41,14 @@ const saveToken = (token, client, user) => {
     username: user.username
   }
 
-  config.tokens.push(token)
+  db.tokens.push(token)
   return token
 }
 
 // * https://oauth2-server.readthedocs.io/en/latest/model/spec.html#getuserfromclient-client-callback
 
 const getUserFromClient = (client) => {
-  let clients = config.confidentialClients.filter((savedClient)=>{
+  let clients = db.confidentialClients.filter((savedClient)=>{
     return savedClient.clientId === client.clientId && savedClient.clientSecret === client.clientSecret
   })
   return clients.length
@@ -67,7 +66,7 @@ const getUserFromClient = (client) => {
 // * https://oauth2-server.readthedocs.io/en/latest/model/spec.html#getaccesstoken-accesstoken-callback
 
 const getAccessToken = (accessToken) => {
-  let tokens = config.tokens.filter((savedToken)=>{
+  let tokens = db.tokens.filter((savedToken)=>{
     return savedToken.accessToken === accessToken
   })
   return tokens[0]
