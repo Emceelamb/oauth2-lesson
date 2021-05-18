@@ -29,8 +29,8 @@ app.get('/secret', authenticateRequest, (req, res)=>{
 })
 
 // TODO: LEARNER TO WRITE
-app.all('/auth', obtainToken, (req, res)=>{
-})
+app.all('/auth', obtainToken)
+
 // TODO END ----------------
 
 

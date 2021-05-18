@@ -1,18 +1,8 @@
-let db = {
-  confidentialClients: [{
-    clientId: 'secretapplication',
-    clientSecret: 'topsecret',
-    grants: [
-      'client_credentials'
-    ],
-    redirectUris: []
-  }],
-  tokens:[]
-}
+const db = require('./db')
 
 // * USED FOR DEBUGGING
 
-var dump = function() {
+const dump = function() {
 	console.log('confidentialClients', db.confidentialClients);
 	console.log('tokens', db.tokens);
 	console.log('users', db.users);
@@ -48,10 +38,8 @@ const saveToken = (token, client, user) => {
 // * https://oauth2-server.readthedocs.io/en/latest/model/spec.html#getuserfromclient-client-callback
 
 const getUserFromClient = (client) => {
-  let clients = db.confidentialClients.filter((savedClient)=>{
-    return savedClient.clientId === client.clientId && savedClient.clientSecret === client.clientSecret
-  })
-  return clients.length
+  // return client
+  return {}
 }
 
 /* *****************************************
